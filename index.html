@@ -150,11 +150,12 @@ function set_my_position(position) {
 //Stalker variables
 
  var StalkerLat = latitude + latitude/10000 / 3;
- var StalkerLng = longitude;
+ var StalkerLng = longitude + latitude/10000 / 3;
  var StalkerPos = new google.maps.LatLng(StalkerLat, StalkerLng);
 
-alert(StalkerLat);
-alert(StalkerLng);
+//Stalker position testing
+//alert(StalkerLat);
+//alert(StalkerLng);
 
  var marker = new google.maps.Marker({
   position: pos,
