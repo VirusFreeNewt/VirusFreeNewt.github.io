@@ -25,7 +25,7 @@
     var zombie_map;
     var tolerance = 10;
     var old_position;
-
+    var old_stalker;
     var testCoordsLat = 50;
     var testCoordsLng = -116
 
@@ -46,6 +46,11 @@
 			map: zombie_map
 
 			});
+		old_stalker = new google.maps.Marker({
+			position: {lat: 43.548339, lng: -116.137235},
+			map: zombie_map
+
+			});		
 
             zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
             zoom: 15,
@@ -132,12 +137,25 @@
 	
     }
 function set_my_position(position) {
-
+ old_stalker.setMap(null);
  old_position.setMap(null);
 
  var latitude = position.coords.latitude;
  var longitude = position.coords.longitude;
  var pos = new google.maps.LatLng(latitude, longitude);
+ 
+//Stalker variables
+
+ var StalkerLat = latitude + math.random(50 - 15) + 15;
+ var StalkerLng = latitude + math.random(50 - 0) + 0;
+ var StalkerPos = new google.maps.LatLng(StalkerLat, StalkerLng);
+//stalker zombie (can't affect player in game, just for effect)
+
+var stalkerZombie = new google.maps.Marker({
+ position: StalkerPos,
+ map: zombie_map,
+ icon: "zombie.png"
+ });
 
  var marker = new google.maps.Marker({
   position: pos,
@@ -148,7 +166,7 @@ function set_my_position(position) {
 all_markers.push(marker);
 
 old_position = marker;
-
+old_stalker = stalkerZombie
 for( i=0; i<all_markers; i++) {
 
  var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
