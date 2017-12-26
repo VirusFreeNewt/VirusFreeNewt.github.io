@@ -75,15 +75,21 @@
 	
 	//random markers
 
-	//generate random icon
+	//generate random icon and number of icons
 	
-	var randomIcon =  Math.floor(Math.random() * 5);
-	
+	//var randomIcon =  Math.floor(Math.random() * 8);
+	var numberOfIcons = Math.floor(Math.random() * (200 - 20) + 20);
 
 	//test randomIcon
 	//alert(randomIcon);
+	for (i=0; i < numberOfIcons; i++){
+	
+	var randomIcon =  Math.floor(Math.random() * 8);
 
-	if (randomIcon == 1 ) {
+	random_1_Lat = Math.random() * (43.555948 - 43.544949) + 43.544949;
+        random_1_Lng = Math.random() * (-116.153182 - -116.113897) + -116.113897;
+
+	if (randomIcon == 1 || randomIcon == 2) {
 
 	randomIcon = "weapons.png";
 	
@@ -101,14 +107,16 @@
 	
 	var marker_position = new google.maps.LatLng(random_1_Lat, random_1_Lng);
 	
-	var randomMaker = new google.maps.Marker({
+	var randomMarker = new google.maps.Marker({
 		position: marker_position,
 		map:zombie_map,
 		icon: randomIcon
 	});
+
 	//test random Latitude and Longitude
 	//alert(" Lat: "+random_1_Lat+"\n Lng: "+random_1_Lng+"\n randomIcon: "+randomIcon);
-
+	
+	}
 	//end of random markers
 
 	if(navigator.geolocation) {
