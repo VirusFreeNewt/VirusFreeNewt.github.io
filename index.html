@@ -146,11 +146,19 @@ function set_my_position(position) {
  var latitude = position.coords.latitude;
  var longitude = position.coords.longitude;
  var pos = new google.maps.LatLng(latitude, longitude);
+
+//adjust map so player is center
+//
+// TO DO:
+//
+// Set player's position as center
+
+
  
 //Stalker variables
 
- var StalkerLat = latitude + latitude/10000 / 3;
- var StalkerLng = longitude + latitude/10000 / 3;
+ var StalkerLat = latitude +  Math.random() * (latitude/10000 - latitude/10000/5) + latitude/10000/5;
+ var StalkerLng = longitude + Math.random() * (longitude/10000/6 - -longitude/10000/6) + -longitude/10000/5;
  var StalkerPos = new google.maps.LatLng(StalkerLat, StalkerLng);
 
 //Stalker position testing
