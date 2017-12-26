@@ -21,6 +21,7 @@
 
 <script>
     var zombie_map;
+    var old_position;
     var data = `43.546756 -116.140544 zombie.png
 		43.547906 -116.151046 weapons.png`;
 
@@ -28,7 +29,11 @@
     var markers = data.split("\n");
     var all_markers = [];
     function initMap() {
+		 old_position = new google.maps.Marker({
+			position: {lat: 43.548339, lng: -116.137235},
+			map: zombie_map
 
+			});
             zombie_map = new google.maps.Map(document.getElementById('zombie_map'), {
             zoom: 15,
             center: {lat: 43.548339, lng: -116.137235}
@@ -53,7 +58,7 @@
 		});
 		all_markers.push(marker);
 	}
-	
+
 	if(navigator.geolocation) {
           navigator.geolocation.watchPosition(set_my_position);
         }
@@ -63,15 +68,23 @@
 	
     }
 function set_my_position(position) {
+
+ old_position.setMap(null);
+
  var latitude = position.coords.latitude;
  var longitude = position.coords.longitude;
  var pos = new google.maps.LatLng(latitude, longitude);
+
  var marker = new google.maps.Marker({
   position: pos,
   map: zombie_map,
   icon: "player.png"
  });
+
 all_markers.push(marker);
+
+old_position = marker;
+
 }
 </script>
 
