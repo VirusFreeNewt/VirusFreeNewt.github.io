@@ -101,18 +101,22 @@
 	//alert(randomIcon);
 	for (i=0; i < numberOfIcons; i++){
 	
-	var randomIcon =  Math.floor(Math.random() * 8);
+	var randomIcon =  Math.floor(Math.random() * 25);
 
 	random_1_Lat = Math.random() * (43.555948 - 43.544949) + 43.544949;
         random_1_Lng = Math.random() * (-116.153182 - -116.113897) + -116.113897;
 
-	if (randomIcon == 1 || randomIcon == 2) {
+	if (randomIcon < 5) {
 
 	randomIcon = "weapons.png";
 	
-	} else if (randomIcon == 3) {
+	} else if (randomIcon < 7) {
 
 	randomIcon = "hospital.png";
+
+	} else if (randomIcon == 7) {
+
+	   randomIcon = "GreenMagnet.png";
 
 	} else  {
 
@@ -136,16 +140,6 @@
 	}
 	//end of random markers
 
-	if(navigator.geolocation) {
-
-          navigator.geolocation.watchPosition(set_my_position);
-
-        }
-        else {
-
-          alert("Geolocation doesn't work in your browser");
-
-        }
 	
     }
 
@@ -222,8 +216,21 @@ if( distance < tolerance ){
 
     } else if (what_is_it == "zombie") {
 
-      score = 0;
-      alert("The Zombies got you! Your score has been reduced to zero.");
+       score = 0;
+       alert("The Zombies got you! Your score has been reduced to zero.");
+
+       // reset magnet effect
+       if(tolerance != 10) {
+       
+       tolerance = 10;
+       alert("You lost the magnet power up to the zombies!");
+
+       }
+
+    } else if (What_is_it == "GreenMagnet") {
+
+       tolerance = math.random() * (20 - 15) + 15;
+       alert("You can now pick up icons from a farther distance! Beware: This works with zombies too!");
 
     }
 
