@@ -20,7 +20,7 @@
    <div id="zombie_map"></div>
 
 <script>
-
+    var health = 1;
     var score;
     var zombie_map;
     var tolerance = 10;
@@ -118,6 +118,10 @@
 
 	   randomIcon = "GreenMagnet.png";
 
+	} else if (randomIcon < 10) {
+
+	   randomIcon = "Trap.png";
+
 	} else  {
 
 	randomIcon = "zombie.png";
@@ -196,13 +200,17 @@ if( distance < tolerance ){
     what_is_it = what_is_it.replace(".png", "");
 
 
-    if(what_is_it != "zombie" && what_is_it != "player" && what_is_it != "GreenMagnet"){
+    if(what_is_it != "zombie" && what_is_it != "player" && what_is_it != "GreenMagnet" && what_is_it != "Trap"){
 
        alert("Found the " + what_is_it );
 
     } else if (what_is_it == "GreenMagnet") {
 
        alert("Found a Green Magnet!");
+
+    } else if (what_is_it == "Trap") {
+
+       alert("It's a trap!");
 
     }
 
@@ -224,9 +232,10 @@ if( distance < tolerance ){
     } else if (what_is_it == "zombie") {
 
        score = 0;
-       alert("The Zombies got you! Your score has been reduced to zero.");
+       alert("The Zombies got you! Your health and score has been reduced to zero.");
 
-       // reset magnet effect
+       // reset all effects and health
+       health = 1;
        if(tolerance != 10) {
        
        tolerance = 10;
@@ -239,8 +248,21 @@ if( distance < tolerance ){
        tolerance = math.random() * (20 - 15) + 15;
        alert("You can now pick up icons from a farther distance! Beware: This works with zombies too!");
 
+    } else if (What_is_it == "Trap") {
+
+       health -= 1;
+       score -= 5;
+       alert("You have walked into a trap and lost a life and 5 points!");
+
     }
 
+    //if all health is gone
+    if (health == 0) {
+
+	score = 0;
+	alert("You have perished! Your score has been reduced to zero.");
+
+    }
 }
 
 }
