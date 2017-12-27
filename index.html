@@ -76,6 +76,18 @@
 		});
 
 		all_markers.push(marker);
+
+
+		if(navigator.geolocation) {
+
+  		   navigator.geolocation.watchPosition(set_my_position);
+
+        	}
+        	else {
+
+      		   alert("Geolocation doesn't work in your browser");
+
+        	}
 	}
 	
 	//random markers
@@ -148,13 +160,9 @@ function set_my_position(position) {
  var pos = new google.maps.LatLng(latitude, longitude);
 
 //adjust map so player is center
-//
-// TO DO:
-//
-// Set player's position as center
 
+zombie_map.panTo(pos);
 
- 
 //Stalker variables
 
  var StalkerLat = latitude +  Math.random() * (latitude/10000 - latitude/10000/5) + latitude/10000/5;
