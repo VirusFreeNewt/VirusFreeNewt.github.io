@@ -23,7 +23,7 @@
     var health = 1;
     var score;
     var zombie_map;
-    var tolerance = 100000;
+    var tolerance = 20;
     var old_position;
     var old_stalker;
     var testCoordsLat = 50;
@@ -249,7 +249,7 @@ if( distance < tolerance ){
 
     } else if (What_is_it == "GreenMagnet") {
 
-       tolerance = math.random() * (20 - 15) + 15;
+       tolerance = math.random() * (50 - 25) + 25;
        alert("You can now pick up icons from a farther distance! Beware: This works with zombies too!");
 
     } else if (What_is_it == "Trap") {
