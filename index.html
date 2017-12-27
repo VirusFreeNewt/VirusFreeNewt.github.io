@@ -122,6 +122,10 @@
 
 	   randomIcon = "Trap.png";
 
+	} else if (randomIcon == 10) {
+
+	   randomIcon = "water.png";
+
 	} else  {
 
 	randomIcon = "zombie.png";
@@ -251,8 +255,12 @@ if( distance < tolerance ){
     } else if (What_is_it == "Trap") {
 
        health -= 1;
-       score -= 5;
        alert("You have walked into a trap and lost a life and 5 points!");
+
+    } else if (What_is_it == "water") {
+
+       health += 1;
+       alert("Your health has gone up by one!")
 
     }
 
