@@ -190,15 +190,22 @@ for(var i=0; i < all_markers.length; i++) {
  var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
 if( distance < tolerance ){
 
+
     var what_is_it = all_markers[i].getIcon();
 
     what_is_it = what_is_it.replace(".png", "");
 
-    if(what_is_it != "zombie" && what_is_it != "player"){
+
+    if(what_is_it != "zombie" && what_is_it != "player" && what_is_it != "GreenMagnet"){
 
        alert("Found the " + what_is_it );
 
+    } else if (what_is_it == "GreenMagnet") {
+
+       alert("Found a Green Magnet!");
+
     }
+
     if(what_is_it != "player") {
      all_markers[i].setMap(null);
     }
