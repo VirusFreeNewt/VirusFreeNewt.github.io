@@ -183,36 +183,33 @@ all_markers.push(stalkerZombie);
 old_stalker = stalkerZombie;
 old_position = marker;
 
-for( i=0; i<all_markers; i++) {
+for( i=0; i < all_markers; i++) {
 
  var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
  
- if( distance < tolerance ){
+if( distance < tolerance ){
 
-  var what_is_it = all_markers[i].getIcon();
-  what_is_it = what_is_it.replace(".png", "");
+    var what_is_it = all_markers[i].getIcon();
 
-  alert("Found the " + what_is_it );
+    what_is_it = what_is_it.replace(".png", "");
 
-  all_markers[i].setMap(null);
+    alert("Found the " + what_is_it );
 
-  if( what_is_it == "hospital"){
+    all_markers[i].setMap(null);
 
-   score += 10;
-   alert("You have "+score+" points.");
-  
- } else if (what_is_it == "weapons") {
 
-    score += 5;
-    alert("You have "+score+" points.");
+    if( what_is_it != "zombie"){
+       score += 10;
+       alert("Your score is " + score);
+    } else {
+       score = 0;
+       alert("The Zombies got you! Your score has been reset");
+    }
 
 }
- else {
-  score = 0;
-  alert("The Zombies got you! Your score has been reduced to zero.");
- }
+
 }
-}
+
 }
 </script>
 
