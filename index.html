@@ -23,14 +23,16 @@
     var health = 1;
     var score;
     var zombie_map;
-    var tolerance = 1000;
+    var tolerance = 20;
     var old_position;
     var old_stalker;
     var testCoordsLat = 50;
     var testCoordsLng = -116
 
-    var random_1_Lat = Math.random() * (43.555948 - 43.544949) + 43.544949;
-    var random_1_Lng = Math.random() * (-116.153182 - -116.113897) + -116.113897;
+    var numberOfIcons = Math.floor(Math.random() * (200 - 20) + 20);
+    var random_1_Lat;
+    var random_1_Lng;
+    var randomIcon;
 
     var data = `43.546756 -116.140544 zombie.png
 		43.547906 -116.151046 weapons.png
@@ -88,20 +90,17 @@
       		   alert("Geolocation doesn't work in your browser");
 
         	}
+
 	}
 	
 	//random markers
 
-	//generate random icon and number of icons
-	
-	//var randomIcon =  Math.floor(Math.random() * 8);
-	var numberOfIcons = Math.floor(Math.random() * (200 - 20) + 20);
 
 	//test randomIcon
 	//alert(randomIcon);
-	for (i=0; i < numberOfIcons; i++){
+	for (var i=0; i <= numberOfIcons; i++){
 	
-	var randomIcon =  Math.floor(Math.random() * 25);
+	randomIcon =  Math.floor(Math.random() * 25);
 
 	random_1_Lat = Math.random() * (43.555948 - 43.544949) + 43.544949;
         random_1_Lng = Math.random() * (-116.153182 - -116.113897) + -116.113897;
@@ -142,18 +141,21 @@
 		icon: randomIcon
 	});
 
+	all_markers.push(randomMarker);
+
 	//test random Latitude and Longitude
 	//alert(" Lat: "+random_1_Lat+"\n Lng: "+random_1_Lng+"\n randomIcon: "+randomIcon);
 	
 	}
+        
 	//end of random markers
 
-	
+	//test all_markers
+	//alert(all_markers.length);
     }
 
 
 function set_my_position(position) {
-
  old_stalker.setMap(null);
  old_position.setMap(null);
 
@@ -193,6 +195,8 @@ for(var i=0; i < all_markers.length; i++) {
 
 var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
 
+//Test for whatever is in this loop
+//alert();
 if( distance < tolerance ){
 
 
@@ -239,14 +243,14 @@ if( distance < tolerance ){
        health = 1;
        if(tolerance != 10) {
        
-       tolerance = 10;
+       tolerance = 20;
        alert("You lost the magnet power up to the zombies!");
 
        }
 
     } else if (what_is_it == "GreenMagnet") {
 
-       tolerance = math.random() * (20 - 15) + 15;
+       tolerance = math.random() * (50 - 25) + 25;
        alert("You can now pick up icons from a farther distance! Beware: This works with zombies too!");
 
     } else if (what_is_it == "Trap") {
@@ -272,7 +276,7 @@ if( distance < tolerance ){
 
     }
 
-}
+   }
 
 }
 
