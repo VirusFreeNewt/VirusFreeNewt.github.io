@@ -23,7 +23,7 @@
     var health = 1;
     var score;
     var zombie_map;
-    var tolerance = 10;
+    var tolerance = 1000;
     var old_position;
     var old_stalker;
     var testCoordsLat = 50;
@@ -192,6 +192,7 @@ old_position = marker;
 for(var i=0; i < all_markers.length; i++) {
 
 var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
+
 if( distance < tolerance ){
 
 
@@ -212,6 +213,11 @@ if( distance < tolerance ){
 
        alert("Found the "+what_is_it+".");
 
+    }
+
+    //remove icon
+    if(what_is_it != "player") {
+     all_markers[i].setMap(null);
     }
 
     if( what_is_it == "weapons"){
@@ -238,27 +244,24 @@ if( distance < tolerance ){
 
        }
 
-    } else if (What_is_it == "GreenMagnet") {
+    } else if (what_is_it == "GreenMagnet") {
 
        tolerance = math.random() * (20 - 15) + 15;
        alert("You can now pick up icons from a farther distance! Beware: This works with zombies too!");
 
-    } else if (What_is_it == "Trap") {
+    } else if (what_is_it == "Trap") {
 
        health -= 1;
        alert("You have walked into a trap and lost a life and 5 points!");
 
-    } else if (What_is_it == "water") {
+    } else if (what_is_it == "water") {
 
        health += 1;
        alert("Your health has gone up by one!")
 
     }
 
-    //remove icon
-    if(what_is_it != "player") {
-     all_markers[i].setMap(null);
-    }
+
 
 
     //if all health is gone
@@ -268,6 +271,7 @@ if( distance < tolerance ){
 	alert("You have perished! Your score has been reduced to zero.");
 
     }
+
 }
 
 }
