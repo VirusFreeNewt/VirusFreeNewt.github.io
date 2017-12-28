@@ -185,7 +185,7 @@ var stalkerZombie = new google.maps.Marker({
  icon: "zombie.png"
  });
 
-all_markers.push(marker);
+
 all_markers.push(stalkerZombie);
 
 old_stalker = stalkerZombie;
@@ -213,16 +213,14 @@ if( distance < tolerance ){
 
        alert("It's a Trap!");
 
-    } else if (what_is_it != "zombie" && what_is_it != "player"){
+    } else if (what_is_it != "zombie"){
 
        alert("Found the "+what_is_it+".");
 
     }
 
-    //remove icon
-    if(what_is_it != "player") {
-     all_markers[i].setMap(null);
-    }
+    //remove marker found
+    all_markers[i].setMap(null);
 
     if( what_is_it == "weapons"){
 
