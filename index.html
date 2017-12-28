@@ -23,7 +23,7 @@
     var health = 1;
     var score;
     var zombie_map;
-    var tolerance = 20;
+    var tolerance = 10;
     var old_position;
     var old_stalker;
     var testCoordsLat = 50;
@@ -153,17 +153,13 @@
 
 
 function set_my_position(position) {
-//alert("Test");
+
  old_stalker.setMap(null);
  old_position.setMap(null);
 
  var latitude = position.coords.latitude;
  var longitude = position.coords.longitude;
  var pos = new google.maps.LatLng(latitude, longitude);
-
-//adjust map so player is center
-
-
 
 //Stalker variables
 
@@ -195,7 +191,7 @@ old_position = marker;
 
 for(var i=0; i < all_markers.length; i++) {
 
- var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
+var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
 if( distance < tolerance ){
 
 
@@ -204,24 +200,19 @@ if( distance < tolerance ){
     what_is_it = what_is_it.replace(".png", "");
 
 
-    if(what_is_it != "zombie" && what_is_it != "player" && what_is_it != "GreenMagnet" && what_is_it != "Trap"){
-
-       alert("Found the " + what_is_it );
-
-    } else if (what_is_it == "GreenMagnet") {
+    if(what_is_it == "GreenMagnet"){
 
        alert("Found a Green Magnet!");
 
     } else if (what_is_it == "Trap") {
 
-       alert("It's a trap!");
+       alert("It's a Trap!");
+
+    } else if (what_is_it != "zombie" && what_is_it != "player"){
+
+       alert("Found the "+what_is_it+".");
 
     }
-
-    if(what_is_it != "player") {
-     all_markers[i].setMap(null);
-    }
-
 
     if( what_is_it == "weapons"){
 
@@ -249,7 +240,7 @@ if( distance < tolerance ){
 
     } else if (What_is_it == "GreenMagnet") {
 
-       tolerance = math.random() * (50 - 25) + 25;
+       tolerance = math.random() * (20 - 15) + 15;
        alert("You can now pick up icons from a farther distance! Beware: This works with zombies too!");
 
     } else if (What_is_it == "Trap") {
@@ -263,6 +254,12 @@ if( distance < tolerance ){
        alert("Your health has gone up by one!")
 
     }
+
+    //remove icon
+    if(what_is_it != "player") {
+     all_markers[i].setMap(null);
+    }
+
 
     //if all health is gone
     if (health == 0) {
