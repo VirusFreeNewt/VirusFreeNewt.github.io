@@ -278,8 +278,9 @@ if( distance < tolerance ){
     }
 
     //remove marker found
+    all_markers[i].setMap(null);
     all_markers.splice(i, 1);
-    all_markers[i].setMap(null)
+    
 
    }
 
