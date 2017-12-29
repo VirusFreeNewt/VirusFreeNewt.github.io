@@ -207,23 +207,22 @@ if( distance < tolerance ){
 
     if(what_is_it == "GreenMagnet"){
 
-	all_markers[i].setMap(null);
+
        alert("Found a Green Magnet!");
 
     } else if (what_is_it == "Trap") {
 
- 	all_markers[i].setMap(null);
+
        alert("It's a Trap!");
 
     } else if (what_is_it != "zombie"){
 
-	all_markers[i].setMap(null);
+
        alert("Found the "+what_is_it+".");
 
     }
 
-    //remove marker found
-    all_markers[i].setMap(null);
+
 
     if( what_is_it == "weapons"){
 
@@ -277,6 +276,10 @@ if( distance < tolerance ){
 	health = 1;
 
     }
+
+    //remove marker found
+    all_markers.splice(i, 1);
+    all_markers[i].setMap(null)
 
    }
 
