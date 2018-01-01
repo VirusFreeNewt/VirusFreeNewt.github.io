@@ -113,17 +113,21 @@
 
 	randomIcon = "hospital.png";
 
-	} else if (randomIcon == 7) {
+	} else if (randomIcon == 7 ) {
 
 	   randomIcon = "GreenMagnet.png";
 
-	} else if (randomIcon < 10) {
+	} else if (randomIcon < 9) {
 
 	   randomIcon = "Trap.png";
 
-	} else if (randomIcon == 10) {
+	} else if (randomIcon < 11) {
 
 	   randomIcon = "water.png";
+
+	} else if (randomIcon == 11) {
+
+	   randomIcon = "bacon.png";
 
 	} else  {
 
@@ -261,12 +265,14 @@ if( distance < tolerance ){
     } else if (what_is_it == "water") {
 
        health += 1;
-       alert("Your health has gone up by one!")
+       alert("Your health has gone up by one!");
+
+    } else if (what_is_it == "bacon") {
+
+      health += 5;
+      alert("Your health has gone up by five!");
 
     }
-
-
-
 
     //if all health is gone
     if (health == 0) {
